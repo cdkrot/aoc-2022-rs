@@ -1,4 +1,3 @@
-use std::process::abort;
 use crate::utils;
 
 fn map_xyz_to_abc(a: &str) -> &str {
@@ -6,7 +5,7 @@ fn map_xyz_to_abc(a: &str) -> &str {
         "X" => "A",
         "Y" => "B",
         "Z" => "C",
-        _ => abort()
+        _ => panic!()
     }
 }
 
@@ -15,7 +14,7 @@ fn xyz_to_match_result(a: &str) -> i32 {
         "X" => -1,
         "Y" => 0,
         "Z" => 1,
-        _ => abort()
+        _ => panic!()
     }
 }
 
@@ -37,7 +36,7 @@ fn get_score(npc: &str, our_move: &str) -> i32 {
         "A" => 1,
         "B" => 2,
         "C" => 3,
-        _ => abort()
+        _ => panic!()
     };
     return score;
 }

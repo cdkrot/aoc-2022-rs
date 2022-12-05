@@ -1,6 +1,3 @@
-use std::str::FromStr;
-use std::io::Read;
-
 #[allow(dead_code)]
 pub(crate) fn read_line() -> String {
     let mut line = String::new();
@@ -20,23 +17,8 @@ pub(crate) fn maybe_read_line() -> Option<String> {
 }
 
 #[allow(dead_code)]
-pub(crate) fn read_token() -> String {
-    let mut token = String::new();
-    std::io::stdin().read_to_string(&mut token).unwrap();
-
-    return token;
-}
-
-#[allow(dead_code)]
 pub(crate) fn read_int() -> i32 {
-    let line = read_token();
+    let line = read_line();
 
     return line.trim().parse().unwrap();
-}
-
-#[allow(dead_code)]
-pub(crate) fn maybe_read_int() -> Result<i32, <i32 as FromStr>::Err> {
-    let line = read_token();
-
-    return line.trim().parse();
 }
