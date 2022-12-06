@@ -1,15 +1,10 @@
+use std::collections::HashSet;
 use crate::utils;
 
 fn distinct(s: &str) -> bool {
-    let s_vec = s.chars().collect::<Vec<char>>();
-    for i in 0..s.len() {
-        for j in 0..i {
-            if s_vec[i] == s_vec[j] {
-                return false;
-            }
-        }
-    }
-    return true;
+    let s_set = s.chars().collect::<HashSet<char>>();
+
+    return s_set.len() == s.len();
 }
 
 pub(crate) fn main() {
