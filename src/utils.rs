@@ -25,3 +25,13 @@ pub(crate) fn read_int<Num : FromStr>() -> Num where <Num as FromStr>::Err: Debu
 
     return line.trim().parse().unwrap();
 }
+
+pub(crate) fn read_all_lines() -> Vec<String> {
+    let mut lines = vec!();
+
+    while let Some(line) = maybe_read_line() {
+        lines.push(line);
+    }
+
+    return lines;
+}
