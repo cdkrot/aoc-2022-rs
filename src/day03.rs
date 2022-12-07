@@ -1,23 +1,23 @@
 use itertools::Itertools;
 
-fn all_chars() -> Vec<(i32, char)> {
+fn all_chars() -> Vec<char> {
     let mut result = vec!();
 
     for ch in 'a'..'{' { // a-z inclusive
-        result.push(((ch as i32) - ('a' as i32) + 1, ch));
+        result.push(ch);
     }
 
     for ch in 'A'..'[' { // a-z inclusive
-        result.push(((ch as i32) - ('A' as i32) + 27, ch));
+        result.push(ch);
     }
 
     return result;
 }
 
 fn cost(a: &str, b: &str) -> i32 {
-    for (code, ch) in all_chars() {
+    for (code, ch) in all_chars().into_iter().enumerate() {
         if a.find(ch).is_some() && b.find(ch).is_some() {
-            return code;
+            return (code + 1) as i32;
         }
     }
 
@@ -25,9 +25,9 @@ fn cost(a: &str, b: &str) -> i32 {
 }
 
 fn cost_partb(lst: Vec<String>) -> i32 {
-    for (code, ch) in all_chars() {
+    for (code, ch) in all_chars().into_iter().enumerate() {
         if lst.iter().all(|str| str.contains(ch)) {
-            return code;
+            return (code + 1) as i32;
         }
     }
 
