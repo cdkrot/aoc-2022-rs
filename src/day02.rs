@@ -44,23 +44,19 @@ fn get_score(npc: &str, our_move: &str) -> i32 {
 pub(crate) fn main() {
     let mut score = 0;
     let mut score_pt2 = 0;
-    loop {
-        match utils::maybe_read_line() {
-            Some(line) => {
-                let pieces: Vec<&str> = line.trim().split(" ").collect();
 
-                let npc = pieces[0];
-                let our_move = map_xyz_to_abc(pieces[1]);
-                let match_result_pt2 = xyz_to_match_result(pieces[1]);
+    while let Some(line) = utils::maybe_read_line() {
+        let pieces: Vec<&str> = line.trim().split(" ").collect();
 
-                let our_move_pt2 = vec!("A", "B", "C").into_iter().filter(
-                    |mv| match_result(npc, mv) == match_result_pt2).nth(0).unwrap();
+        let npc = pieces[0];
+        let our_move = map_xyz_to_abc(pieces[1]);
+        let match_result_pt2 = xyz_to_match_result(pieces[1]);
 
-                score += get_score(npc, our_move);
-                score_pt2 += get_score(npc, our_move_pt2);
-            },
-            None => break
-        }
+        let our_move_pt2 = vec!("A", "B", "C").into_iter().filter(
+            |mv| match_result(npc, mv) == match_result_pt2).nth(0).unwrap();
+
+        score += get_score(npc, our_move);
+        score_pt2 += get_score(npc, our_move_pt2);
     }
 
     println!("Score: {}", score);

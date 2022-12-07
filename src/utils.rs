@@ -1,3 +1,6 @@
+use std::fmt::Debug;
+use std::str::FromStr;
+
 #[allow(dead_code)]
 pub(crate) fn read_line() -> String {
     let mut line = String::new();
@@ -17,7 +20,7 @@ pub(crate) fn maybe_read_line() -> Option<String> {
 }
 
 #[allow(dead_code)]
-pub(crate) fn read_int() -> i32 {
+pub(crate) fn read_int<Num : FromStr>() -> Num where <Num as FromStr>::Err: Debug {
     let line = read_line();
 
     return line.trim().parse().unwrap();
