@@ -33,17 +33,8 @@ fn rope_simulation(lines: Vec<String>, num_knots: usize) {
                 if (knots[k - 1].0 - knots[k].0).abs() >= 2 ||
                     (knots[k - 1].1 - knots[k].1).abs() >= 2 {
 
-                    if knots[k].0 < knots[k - 1].0 {
-                        knots[k].0 += 1;
-                    } else if knots[k].0 > knots[k - 1].0 {
-                        knots[k].0 -= 1;
-                    }
-
-                    if knots[k].1 < knots[k - 1].1 {
-                        knots[k].1 += 1;
-                    } else if knots[k].1 > knots[k - 1].1 {
-                        knots[k].1 -= 1;
-                    }
+                    knots[k].0 += (knots[k - 1].0 - knots[k].0).signum();
+                    knots[k].1 += (knots[k - 1].1 - knots[k].1).signum();
                 }
             }
 
