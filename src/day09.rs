@@ -4,11 +4,11 @@ use crate::utils;
 pub(crate) fn main() {
     let lines = utils::read_all_lines();
 
-    rope_simul(lines.clone(), 2);
-    rope_simul(lines, 10);
+    rope_simulation(lines.clone(), 2);
+    rope_simulation(lines, 10);
 }
 
-fn rope_simul(lines: Vec<String>, num_knots: usize) {
+fn rope_simulation(lines: Vec<String>, num_knots: usize) {
     let mut knots = vec!();
     for _ in 0..num_knots {
         knots.push((0, 0));
@@ -30,8 +30,8 @@ fn rope_simul(lines: Vec<String>, num_knots: usize) {
             }
 
             for k in 1..num_knots {
-                if abs(knots[k - 1].0 - knots[k].0) >= 2 ||
-                    abs(knots[k - 1].1 - knots[k].1) >= 2 {
+                if (knots[k - 1].0 - knots[k].0).abs() >= 2 ||
+                    (knots[k - 1].1 - knots[k].1).abs() >= 2 {
 
                     if knots[k].0 < knots[k - 1].0 {
                         knots[k].0 += 1;
@@ -52,12 +52,4 @@ fn rope_simul(lines: Vec<String>, num_knots: usize) {
     }
 
     println!("Total visited: {}", visited.len());
-}
-
-fn abs(x: i32) -> i32 {
-    if x < 0 {
-        -x
-    } else {
-        x
-    }
 }
