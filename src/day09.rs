@@ -9,11 +9,7 @@ pub(crate) fn main() {
 }
 
 fn rope_simulation(lines: Vec<String>, num_knots: usize) {
-    let mut knots = vec!();
-    for _ in 0..num_knots {
-        knots.push((0, 0));
-    }
-
+    let mut knots = vec![(0, 0); num_knots];
     let mut visited: BTreeSet<(i32, i32)> = BTreeSet::new();
     visited.insert(*knots.last().unwrap());
 
