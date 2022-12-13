@@ -11,6 +11,7 @@ mod day09;
 mod day10;
 mod day11;
 mod day12;
+mod day13;
 
 fn main() {
     let day = std::env::args().nth(1).expect("Please provide day as a CLI argument");
@@ -28,6 +29,7 @@ fn main() {
         "day10" => day10::main(),
         "day11" => day11::main(),
         "day12" => day12::main(),
+        "day13" => day13::main(),
 
         _ => {
             println!("Undefined day");
