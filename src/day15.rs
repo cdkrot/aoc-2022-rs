@@ -80,12 +80,15 @@ fn easy(input: Vec<((i32, i32), (i32, i32))>, the_y: i32) {
 
 fn hard(input: Vec<((i32, i32), (i32, i32))>, minc: i32, maxc: i32) {
     for y in minc..maxc+1 {
-        let mut events = get_events_for_y(&input, y);
-        // some non-real events so that whole [minc, maxc] is covered by the scan line.
-        events.push((minc - 2, true));
-        events.push((minc - 1, false));
-        events.push((maxc + 1, true));
-        events.push((maxc + 2, false));
+        let events = get_events_for_y(&input, y);
+
+        let mut events: Vec<(i32, i32)> = events.into_iter().map(|(x, is_open)| {
+            (x, if is_open { 1 } else { -1 })
+        }).collect();
+
+        // some fictuous events so that whole [minc, maxc] is covered.
+        events.push((minc - 1, 0));
+        events.push((maxc + 1, 0));
         events.sort();
 
         let mut prev_x = i32::MIN;
@@ -98,11 +101,7 @@ fn hard(input: Vec<((i32, i32), (i32, i32))>, minc: i32, maxc: i32) {
                 return;
             }
 
-            if is_open {
-                num_open += 1;
-            } else {
-                num_open -= 1;
-            }
+            num_open += is_open;
             prev_x = x;
         }
     }
