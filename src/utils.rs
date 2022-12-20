@@ -35,3 +35,12 @@ pub(crate) fn read_all_lines() -> Vec<String> {
 
     return lines;
 }
+
+#[allow(dead_code)]
+pub(crate) fn expect_prefix<'a>(s: &'a str, expected: &str) -> &'a str {
+    if !s.starts_with(expected) {
+        panic!();
+    }
+
+    return &s[expected.len()..];
+}
